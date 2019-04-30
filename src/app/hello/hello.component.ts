@@ -13,7 +13,6 @@ export class HelloComponent implements OnInit {
   constructor(private router: Router,private cookieService: CookieService,private loginService: LoginService) { }
 
   ngOnInit() {
-    console.log("aaahao")
     const token = this.cookieService.get('token');
     if(token){
       this.loginService.getUserDataByToken(token)

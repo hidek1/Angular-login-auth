@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     const token = this.cookieService.get('token');
-    console.log("aaa")
     if(token){
       this.loginService.getUserDataByToken(token)
       .subscribe((res) => {
@@ -39,7 +38,6 @@ export class LoginComponent implements OnInit {
     if(res){
         if(res.accessToken){
           var token = res.accessToken;
-          console.log(token);
           this.router.navigate(['hello']);
           this.cookieService.set( 'token', token );
         }
