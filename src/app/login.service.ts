@@ -29,7 +29,7 @@ export class LoginService {
   getUserDataByToken (token: string): Observable<User> {
     const url = `${this.loginUrl}/${token}`;
     return this.http.get<User>(url).pipe(
-      tap(_ => this.log(`fetched user`)),
+      tap(_ => console.log(`fetched user`)),
       catchError(this.handleError<User>(`get user data`))
     );
   }
@@ -47,14 +47,10 @@ export class LoginService {
       console.error(error); // かわりにconsoleに出力
  
       // TODO: ユーザーへの開示のためにエラーの変換処理を改善する
-      this.log(`${operation} failed: ${error.message}`);
+      console.log(`${operation} failed: ${error.message}`);
  
       // 空の結果を返して、アプリを持続可能にする
       return of(result as T);
     };
-  }
-
-  private log(message: string) {
-    console.log(message);
   }
 }
